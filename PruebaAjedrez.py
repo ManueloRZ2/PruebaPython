@@ -1,3 +1,7 @@
+
+import numpy as np
+import random
+
 matrix= [[0,0,0,0,0,0,0,0],
 		 [0,0,0,0,0,0,0,0],
 		 [0,0,0,0,0,0,0,0],
@@ -15,9 +19,9 @@ entrada=input("ingresar ficha:")
 contador=-1
 
 if entrada.lower()=="peon":
-	posix=6			#################################							
-	posiy=6
-	matrix[posiy][posix] = 8											#
+	posix=(random.randint(0,8))			#############							
+	posiy=(random.randint(0,8))						#
+	matrix[posiy][posix] = 8						#
 	for i in matrix:								#	
 		contador+=1									#
 													#
@@ -27,9 +31,9 @@ if entrada.lower()=="peon":
 			
 elif entrada.lower()=="torre":
 
-	posix=6			#################################							
-	posiy=4	
-	matrix[posiy][posix]=8										#
+	posix=(random.randint(0,8))			###############							
+	posiy=(random.randint(0,8))						#
+	matrix[posiy][posix]=8							#
 	for i in matrix:								#	
 		contador+=1									#
 													#
