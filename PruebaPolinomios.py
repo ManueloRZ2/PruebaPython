@@ -45,6 +45,7 @@ def multipliEscalar(poli):
 			print("Valores no válidos. Recuerde que debe ingresar un valor numerico valido.")
 
 	print("El resultado de la multiplicación escalar es :",poli.listaVect*escalar)
+	return poli.listaVect*escalar
 
 
 def sumaPolin(poli1,poli2):
@@ -55,14 +56,16 @@ def sumaPolin(poli1,poli2):
 	if len(poli1.listaVect)>len(poli2.listaVect):
 
 		print("El resultado de la suma de los polinomios es :",poli1.listaVect+np.array(vectCeros.tolist()+poli2.listaCoef))
+		return poli1.listaVect+np.array(vectCeros.tolist()+poli2.listaCoef)
 
 	elif len(poli1.listaVect)<len(poli2.listaVect):
 
 		print("El resultado de la suma de los polinomios es :",poli2.listaVect+np.array(vectCeros.tolist()+poli1.listaCoef))
-
+		return poli2.listaVect+np.array(vectCeros.tolist()+poli1.listaCoef)
 	else:
 
 		print("El resultado de la suma de los polinomios es :",poli2.listaVect+poli1.listaVect)
+		return poli2.listaVect+poli1.listaVect
 
 
 def restaPolin(poli1,poli2):
@@ -73,14 +76,17 @@ def restaPolin(poli1,poli2):
 	if len(poli1.listaVect)>len(poli2.listaVect):
 
 		print("El resultado de la resta de los polinomios es :",poli1.listaVect-np.array(vectCeros.tolist()+poli2.listaCoef))
+		return poli1.listaVect-np.array(vectCeros.tolist()+poli2.listaCoef)
 
 	elif len(poli1.listaVect)<len(poli2.listaVect):
 
 		print("El resultado de la resta de los polinomios es :",np.array(vectCeros.tolist()+poli1.listaCoef)-poli2.listaVect)
+		return np.array(vectCeros.tolist()+poli1.listaCoef)-poli2.listaVect
 
 	else:
 
 		print("El resultado de la resta de los polinomios es :",poli1.listaVect-poli2.listaVect)
+		return poli1.listaVect-poli2.listaVect
 
 
 def multipliPolin(poli1,poli2):
@@ -92,21 +98,66 @@ def multipliPolin(poli1,poli2):
 		for j in range(len(poli2.listaVect)):
 				vectResult[i+j]=vectResult[i+j]+(poli1.listaVect[i]*poli2.listaVect[j])
 
+	print("El producto de polinomios es: ", vectResult)			
+	return vectResult			
+	
 
-	print("El producto de polinomios es: ", vectResult)
 
+def evaluarPolin(poliResult,x):
 
+	potencia=len(poliResult)
+	resultado=0
 
+	for i in range(len(poliResult)):
+		resultado=resultado+(poliResult[i]*(x**(len(poliResult)-1-i)))
+
+	  
+	print("Al evaluar el polinomio resulta: ", resultado)
 
 
 ################################# Main ###########################################
 
+while True:
+	while True:
 
+		try:
+			print("#################################","\n",
+			"# 1.sumar                         #","\n",
+			"# 2.restar                        #","\n",
+			"# 3.multiplicar por escalar       #","\n",
+			"# 4.multiplicación de polinomios  #","\n",
+			"# 5.evaluar polinomio             #","\n",
+			"# 6.salir                         #","\n",
+			"#################################","\n",)
+			opcion=int(input("Este programa se encarga de realizar operaciones con polinomios, a continuación ingrese una opción del menú: "))
+			break;
+		except ValueError:
+			print("Valor inválido. Por inténtalo de nuevo.")
 
-polinomio1=polinomio()
-polinomio2=polinomio()
-
-#multipliEscalar(polinomio1)
-#sumaPolin(polinomio1,polinomio2)
-#restaPolin(polinomio1,polinomio2)
-multipliPolin(polinomio1,polinomio2)
+	if opcion==1:
+		polinomio1=polinomio()
+		polinomio2=polinomio()
+		vector=sumaPolin(polinomio1,polinomio2)
+		evaluarPolin(vector,2)
+	elif opcion==2:
+		polinomio1=polinomio()
+		polinomio2=polinomio()
+		vector=restaPolin(polinomio1,polinomio2)
+		evaluarPolin(vector,2)
+	elif opcion==3:
+		polinomio1=polinomio()
+		polinomio2=polinomio()
+		vector=multipliEscalar(polinomio1)
+		evaluarPolin(vector,2)
+	elif opcion==4:
+		polinomio1=polinomio()
+		polinomio2=polinomio()	
+		vector=multipliPolin(polinomio1,polinomio2)
+		evaluarPolin(vector,2)
+	elif opcion==5:
+		polinomio1=polinomio()
+		evaluarPolin(polinomio1.listaVect,2)
+	elif opcion==6:
+		break;
+	else:
+		print("Opción inexistente. Por favor ingresa un valor asociado en el menú.")
