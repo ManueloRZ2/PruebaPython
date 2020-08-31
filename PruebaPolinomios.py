@@ -155,6 +155,7 @@ def validacion(vector):
 
 ################################# Main ###########################################
 
+# Menú para selección de parte del usuario
 while True:
 	while True:
 
